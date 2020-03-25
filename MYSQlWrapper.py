@@ -8,13 +8,15 @@ import time
 
 class MySql_Wrapper:
     def __init__(self):
-        connection = mysql.connector.connect(host=db_details["host"],
+        self.connection = mysql.connector.connect(host=db_details["host"],
                                              database=db_details["database"],
                                              user=db_details["user"],
                                              password=db_details["psswd"])
-        if connection.is_connected():
+        if self.connection.is_connected():
             print("Connected to MySQL Server version ")
-            self.cursor = connection.cursor()
+            self.cursor = self.connection.cursor()
+        else:
+            print("Could not connect")
 
 
     def shipment_id(self):
