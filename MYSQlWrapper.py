@@ -24,7 +24,7 @@ class MySql_Wrapper:
         self.cursor.execute(get_shipment_id_query)
         track_ids = self.cursor.fetchall()
         for id in track_ids:
-            robot_filename= id[:3]+'.py'
+            robot_filename= id[1][:3]+'.py'
             call_rpa(id, robot_filename)
         print("All ids in track_ids table check \n Rerun after 5 mins")
         time.sleep(300)
