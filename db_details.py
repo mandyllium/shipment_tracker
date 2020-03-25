@@ -1,5 +1,5 @@
 db_details = {
-    "User": "dbtrack",
+    "user": "dbtrack",
     "psswd": "riG{KoHd^Y~u",
     "database": "dbtrack",
     "host": "localhost"
