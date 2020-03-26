@@ -27,7 +27,7 @@ class MYSQlWrapper:
             robot_filename = id[0][:3]+'.robot'
             print("shipment_id")
             #call_rpa(id, robot_filename)
-        print("All ids in track_ids table check \n Rerun after 3 mins")
+        #print("All ids in track_ids table check \n Rerun after 3 mins")
         # time.sleep(180)
         # self.shipment_id()
 
@@ -73,6 +73,6 @@ class MYSQlWrapper:
 
     def __del__(self):
         print("release connection")
+        del self.cursor
         self.connection.close()
-        del(self.cursor)
         print("connection released")
