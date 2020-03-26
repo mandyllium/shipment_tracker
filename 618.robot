@@ -28,7 +28,14 @@ Get Current Remarks
 *** Test Cases ***
 Test title
     [Tags]    DEBUG
-    Open Browser    https://www.track-trace.com/aircargo    headlesschrome      ##PROD
+    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    Call Method    ${chrome_options}    add_argument    --disable-extensions
+    Call Method    ${chrome_options}    add_argument    --headless
+    Call Method    ${chrome_options}    add_argument    --disable-gpu
+    Call Method    ${chrome_options}    add_argument    --no-sandbox
+    Call Method    ${chrome_options}    add_argument    --ignore-certificate-errors
+    Create Webdriver    Chrome    chrome_options=${chrome_options}
+    GO to    https://www.track-trace.com/aircargo    #headlesschrome      ##PROD
     Maximize Browser Window
     Sleep    4s
     ${tracking_id}=	 Replace String Using Regexp	${shipment_id}	618	  ${EMPTY}	  count=1
