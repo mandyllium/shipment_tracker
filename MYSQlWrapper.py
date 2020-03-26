@@ -25,11 +25,10 @@ class MYSQlWrapper:
         track_ids = self.cursor.fetchall()
         for id in track_ids:
             robot_filename = id[0][:3]+'.robot'
-            print("shipment_id")
-            #call_rpa(id, robot_filename)
-        #print("All ids in track_ids table check \n Rerun after 3 mins")
-        # time.sleep(180)
-        # self.shipment_id()
+            call_rpa(id, robot_filename)
+        print("All ids in track_ids table check \n Rerun after 3 mins")
+        time.sleep(180)
+        self.shipment_id()
 
 
     def delete_entry(self, shipment_id):
@@ -70,9 +69,3 @@ class MYSQlWrapper:
             else:
                 self.cursor.execute(insert_query)
         self.connection.commit()
-
-    def __del__(self):
-        print("release connection")
-        del self.cursor
-        self.connection.close()
-        print("connection released")
