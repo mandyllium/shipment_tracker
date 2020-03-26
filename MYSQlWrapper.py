@@ -27,7 +27,7 @@ class MYSQlWrapper:
             robot_filename = id[0][:3]+'.robot'
             call_rpa(id, robot_filename)
         print("All ids in track_ids table check \n Rerun after 3 mins")
-        time.sleep(180)
+        time.sleep(3)
         self.shipment_id()
 
 
@@ -35,6 +35,7 @@ class MYSQlWrapper:
         delete_query= "delete from track_ids where shipment_id like '{0}'".format(shipment_id)
         self.cursor.execute(delete_query, shipment_id)
         print("Entry Deleted")
+        self.connection.commit()
 
 
     def check_entry(self, shipment_id):
