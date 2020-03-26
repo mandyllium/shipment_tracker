@@ -39,7 +39,6 @@ class MYSQlWrapper:
         self.cursor.execute(delete_query, shipment_id)
         print("Entry Deleted")
         self.connection.commit()
-        self.connection.close()
 
 
     def check_entry(self, shipment_id):
@@ -48,10 +47,8 @@ class MYSQlWrapper:
         self.cursor.execute(check_query, shipment_id)
         check = self.cursor.fetchall()
         if len(check) > 0:
-            self.connection.close()
             return True
         else:
-            self.connection.close()
             return False
 
 
