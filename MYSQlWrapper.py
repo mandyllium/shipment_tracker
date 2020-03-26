@@ -7,7 +7,7 @@ import time
 
 
 class MYSQlWrapper:
-    def __init__(self):
+    def db_connect(self):
         self.connection = mysql.connector.connect(host=db_details["host"],
                                              database=db_details["database"],
                                              user=db_details["user"],
@@ -20,6 +20,7 @@ class MYSQlWrapper:
 
 
     def shipment_id(self):
+        self.db_connect()
         get_shipment_id_query="select * from track_ids order by shipment_id ASC"
         self.cursor.execute(get_shipment_id_query)
         track_ids = self.cursor.fetchall()
@@ -28,27 +29,34 @@ class MYSQlWrapper:
             call_rpa(id, robot_filename)
         print("All ids in track_ids table check \n Rerun after 3 mins")
         time.sleep(3)
+        self.connection.close()
         self.shipment_id()
 
 
     def delete_entry(self, shipment_id):
+        self.db_connect()
         delete_query= "delete from track_ids where shipment_id like '{0}'".format(shipment_id)
         self.cursor.execute(delete_query, shipment_id)
         print("Entry Deleted")
         self.connection.commit()
+        self.connection.close()
 
 
     def check_entry(self, shipment_id):
+        self.db_connect()
         check_query = "select * from shipment_status where shipment_id like '{0}'".format(shipment_id)
         self.cursor.execute(check_query, shipment_id)
         check = self.cursor.fetchall()
         if len(check) > 0:
+            self.connection.close()
             return True
         else:
+            self.connection.close()
             return False
 
 
     def send_to_DB(self, shipment_id, current_status, current_remarks, status_string):
+        self.db_connect()
         insert_query='''insert into shipment_status 
                         (shipment_id, current_status, current_remarks, track_history)
                         values ('{0}','{1}','{2}','{3}')'''. format(shipment_id, current_status, current_remarks, status_string)
@@ -70,3 +78,4 @@ class MYSQlWrapper:
             else:
                 self.cursor.execute(insert_query)
         self.connection.commit()
+        self.connection.close()
