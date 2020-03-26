@@ -23,7 +23,7 @@ Test title
     Click Button    //button[@class='tingle-btn tingle-btn--primary']
     Input Text    //input[@id='number']    ${shipment_id}
     Click Button    //div[@id='vue-multi-form']//div[3]//input[1]
-    Sleep    30s
+    Wait Until Element Is Not Visible  //a[contains(text(),'Click here to see details')]
     Click Element  //a[contains(text(),'Click here to see details')]
     ${status}=   Get Text    xpath=//div[@class='table-responsive-2 tsp10']//tr[1]//td[1]
     ${current_remarks}=   Get Text    xpath=//div[@class='table-responsive-2 tsp10']//tr[1]//td[4]
