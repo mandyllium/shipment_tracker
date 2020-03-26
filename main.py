@@ -11,6 +11,6 @@ def main_call(mysql_obj):
     main_call(mysql_obj)
 
 if __name__ == '__main__':
-    mysql = MySql_Wrapper()
+    mysql = MYSQlWrapper()
     main_call(mysql)
 
