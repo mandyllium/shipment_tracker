@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation    Suite description
 Library     Selenium2Library
+Library     MYSQlWrapper.py
 
 *** Variables ***
 ${shipment_id}         default_circuit_id

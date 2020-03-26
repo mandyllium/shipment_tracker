@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation    Suite description
 Library     Selenium2Library
+Library     MYSQlWrapper.py
 
 *** Variables ***
 ${shipment_id}         default_circuit_id
@@ -15,7 +16,7 @@ Test title
     Call Method    ${chrome_options}    add_argument    --no-sandbox
     Call Method    ${chrome_options}    add_argument    --ignore-certificate-errors
     Create Webdriver    Chrome    chrome_options=${chrome_options}
-    GO to    https://www.track-trace.com/aircargo   #headlesschrome      ##PROD
+    Go To    https://www.track-trace.com/aircargo   #chrome      ##PROD
     Maximize Browser Window
     Sleep    4s
     Click Button    //button[@class='tingle-btn tingle-btn--primary']

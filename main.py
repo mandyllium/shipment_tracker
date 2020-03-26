@@ -1,5 +1,5 @@
 import time
-from MYSQlWrapper import MySql_Wrapper
+from MYSQlWrapper import MYSQlWrapper
 
 def main_call(mysql_obj):
     #try:

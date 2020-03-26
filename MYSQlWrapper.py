@@ -6,7 +6,7 @@ import time
 
 
 
-class MySql_Wrapper:
+class MYSQlWrapper:
     def __init__(self):
         self.connection = mysql.connector.connect(host=db_details["host"],
                                              database=db_details["database"],
