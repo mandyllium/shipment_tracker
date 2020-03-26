@@ -57,7 +57,7 @@ Test title
     \  ${status_string} =   Catenate   ${status_string}    ${catenate}
     \  ${status_string} =   Catenate   ${status_string}    \n
     \  ${catenate} =   Set variable   ${EMPTY}
-    #send to DB  ${shipment_id}  ${status}  ${current_remarks}  ${status_string}
+    send to DB  ${shipment_id}  ${status}  ${current_remarks}  ${status_string}
     ${current_remarks}=  Get Current Remarks  ${counts}
     log to console   ${status}
     log to console   ${current_remarks}
