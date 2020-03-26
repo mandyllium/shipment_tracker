@@ -24,7 +24,7 @@ class MYSQlWrapper:
         self.cursor.execute(get_shipment_id_query)
         track_ids = self.cursor.fetchall()
         for id in track_ids:
-            robot_filename= id[0][:3]+'.robot'
+            robot_filename = id[0][:3]+'.robot'
             call_rpa(id, robot_filename)
         print("All ids in track_ids table check \n Rerun after 5 mins")
         time.sleep(300)
@@ -32,13 +32,13 @@ class MYSQlWrapper:
 
 
     def delete_entry(self, shipment_id):
-        delete_query= 'delete from track_ids where shipment_id like %s'
+        delete_query= 'delete from track_ids where shipment_id like {0}'.format(shipment_id)
         self.cursor.execute(delete_query, shipment_id)
         print("Entry Deleted")
 
 
     def check_entry(self, shipment_id):
-        check_query = "select * from shipment_status where shipment_id like %s"
+        check_query = "select * from shipment_status where shipment_id like {0}".format(shipment_id)
         self.cursor.execute(check_query, shipment_id)
         check = self.cursor.fetchall()
         if len(check) > 0:
@@ -50,19 +50,21 @@ class MYSQlWrapper:
     def send_to_DB(self, shipment_id, current_status, current_remarks, status_string):
         insert_query='''insert into shipment_status 
                         (shipment_id, current_status, current_remarks, track_history)
-                        values (%s, %s, %s, %s)'''
+                        values ({0},{1},{2},{3})'''. format(shipment_id, current_status, current_remarks, status_string)
+
         update_query='''update shipment_status 
-                     set current_status=%s, current_remarks= %s, track_history= %s 
-                     where shipment_id like %s '''
+                     set current_status={0}, current_remarks= {1}, track_history= {2} 
+                     where shipment_id like {3} '''. format(current_status, current_remarks, status_string, shipment_id)
+
         status = current_status.lower()
         if 'delivered' in status or 'dlv' in status:
             self.delete_entry(shipment_id)
             if self.check_entry(shipment_id):
-                self.cursor.execute(update_query, (current_status, current_remarks, status_string, shipment_id))
+                self.cursor.execute(update_query)
             else:
-                self.cursor.execute(update_query, (shipment_id, current_status, current_remarks, status_string))
+                self.cursor.execute(insert_query)
         else:
             if self.check_entry(shipment_id):
-                self.cursor.execute(update_query, (current_status, current_remarks, status_string, shipment_id))
+                self.cursor.execute(update_query)
             else:
-                self.cursor.execute(update_query, (shipment_id, current_status, current_remarks, status_string))
+                self.cursor.execute(insert_query)
