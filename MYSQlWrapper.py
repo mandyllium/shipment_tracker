@@ -29,8 +29,8 @@ class MYSQlWrapper:
             call_rpa(id, robot_filename)
         print("All ids in track_ids table check \n Rerun after 10 mins")
         self.connection.close()
-        time.sleep(600)
-        self.shipment_id()
+        #time.sleep(600)
+        #self.shipment_id()
 
 
     def delete_entry(self, shipment_id):
