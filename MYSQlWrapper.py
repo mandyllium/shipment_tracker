@@ -27,7 +27,7 @@ class MYSQlWrapper:
         for id in track_ids:
             robot_filename = id[0][:3]+'.robot'
             call_rpa(id, robot_filename)
-        print("All ids in track_ids table check \n Rerun after 10 mins")
+        print("All ids in track_ids table check") #\n Rerun after 10 mins")
         self.connection.close()
         #time.sleep(600)
         #self.shipment_id()
