@@ -1,0 +1,6 @@
+venv
+.idea
+*.html
+output.xml
+*.png
+__pycache__
