@@ -2,7 +2,7 @@ import mysql.connector
 from mysql.connector import Error
 from db_details import db_details
 from call_robot import call_rpa
-import time
+from filename_list import filename_list
 
 
 
@@ -25,8 +25,11 @@ class MYSQlWrapper:
         self.cursor.execute(get_shipment_id_query)
         track_ids = self.cursor.fetchall()
         for id in track_ids:
-            robot_filename = id[0][:3]+'.robot'
-            call_rpa(id, robot_filename)
+            if id[0][:3] in filename_list and len(id[0]) == 11:
+                robot_filename = id[0][:3]+'.robot'
+                call_rpa(id, robot_filename)
+            else:
+                continue
         print("All ids in track_ids table checked.") #\n Rerun after 10 mins")
         self.connection.close()
         #time.sleep(600)
@@ -63,7 +66,7 @@ class MYSQlWrapper:
                      where shipment_id like '{3}' '''. format(current_status, current_remarks, status_string, shipment_id)
 
         status = current_status.lower()
-        if 'delivered' in status or 'dlv' in status:
+        if 'delivered' in status or 'dlv' in status and 'documents delivered' not in status:
             self.delete_entry(shipment_id)
             if self.check_entry(shipment_id):
                 self.cursor.execute(update_query)

@@ -1,35 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.1.2 (Python 3.6.8 on win32)" generated="20200326 22:29:01.654" rpa="false">
-<suite id="s1" name="157" source="C:\Users\qpjg1605\Documents\FL\ShipmentTracker\157.robot">
+<robot generator="Robot 3.1.2 (Python 3.6.8 on win32)" generated="20200330 23:47:26.071" rpa="false">
+<suite id="s1" name="217" source="C:\Users\qpjg1605\Documents\FL\ShipmentTracker\217.robot">
 <test id="s1-t1" name="Test title">
-<kw name="Open Browser" library="Selenium2Library">
-<doc>Opens a new browser instance to the given ``url``.</doc>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+</arguments>
+<assign>
+<var>${chrome_options}</var>
+</assign>
+<msg timestamp="20200330 23:47:26.600" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000027026DFE0B8&gt;</msg>
+<status status="PASS" starttime="20200330 23:47:26.599" endtime="20200330 23:47:26.600"></status>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<arguments>
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>--disable-extensions</arg>
+</arguments>
+<status status="PASS" starttime="20200330 23:47:26.600" endtime="20200330 23:47:26.601"></status>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<arguments>
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+</arguments>
+<status status="PASS" starttime="20200330 23:47:26.601" endtime="20200330 23:47:26.602"></status>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<arguments>
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>--disable-gpu</arg>
+</arguments>
+<status status="PASS" starttime="20200330 23:47:26.602" endtime="20200330 23:47:26.603"></status>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<arguments>
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>--no-sandbox</arg>
+</arguments>
+<status status="PASS" starttime="20200330 23:47:26.603" endtime="20200330 23:47:26.603"></status>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<arguments>
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>--ignore-certificate-errors</arg>
+</arguments>
+<status status="PASS" starttime="20200330 23:47:26.604" endtime="20200330 23:47:26.604"></status>
+</kw>
+<kw name="Create Webdriver" library="Selenium2Library">
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<arguments>
+<arg>Chrome</arg>
+<arg>chrome_options=${chrome_options}</arg>
+</arguments>
+<msg timestamp="20200330 23:47:26.605" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<status status="PASS" starttime="20200330 23:47:26.605" endtime="20200330 23:47:28.316"></status>
+</kw>
+<kw name="Go To" library="Selenium2Library">
+<doc>Navigates the active browser instance to the provided ``url``.</doc>
 <arguments>
 <arg>https://www.track-trace.com/aircargo</arg>
-<arg>chrome</arg>
 </arguments>
-<msg timestamp="20200326 22:29:04.397" level="INFO">Opening browser 'chrome' to base url 'https://www.track-trace.com/aircargo'.</msg>
-<status status="PASS" starttime="20200326 22:29:04.396" endtime="20200326 22:29:14.158"></status>
+<msg timestamp="20200330 23:47:28.318" level="INFO">Opening url 'https://www.track-trace.com/aircargo'</msg>
+<status status="PASS" starttime="20200330 23:47:28.317" endtime="20200330 23:47:32.094"></status>
 </kw>
 <kw name="Maximize Browser Window" library="Selenium2Library">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20200326 22:29:14.165" endtime="20200326 22:29:14.983"></status>
+<status status="PASS" starttime="20200330 23:47:32.094" endtime="20200330 23:47:32.240"></status>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <doc>Pauses the test executed for the given time.</doc>
 <arguments>
 <arg>4s</arg>
 </arguments>
-<msg timestamp="20200326 22:29:19.033" level="INFO">Slept 4 seconds</msg>
-<status status="PASS" starttime="20200326 22:29:15.031" endtime="20200326 22:29:19.033"></status>
+<msg timestamp="20200330 23:47:36.242" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20200330 23:47:32.241" endtime="20200330 23:47:36.243"></status>
 </kw>
 <kw name="Click Button" library="Selenium2Library">
 <doc>Clicks button identified by ``locator``.</doc>
 <arguments>
 <arg>//button[@class='tingle-btn tingle-btn--primary']</arg>
 </arguments>
-<msg timestamp="20200326 22:29:19.034" level="INFO">Clicking button '//button[@class='tingle-btn tingle-btn--primary']'.</msg>
-<status status="PASS" starttime="20200326 22:29:19.034" endtime="20200326 22:29:19.197"></status>
+<msg timestamp="20200330 23:47:36.246" level="INFO">Clicking button '//button[@class='tingle-btn tingle-btn--primary']'.</msg>
+<status status="PASS" starttime="20200330 23:47:36.245" endtime="20200330 23:47:36.365"></status>
 </kw>
 <kw name="Input Text" library="Selenium2Library">
 <doc>Types the given ``text`` into text field identified by ``locator``.</doc>
@@ -37,103 +102,320 @@
 <arg>//input[@id='number']</arg>
 <arg>${shipment_id}</arg>
 </arguments>
-<msg timestamp="20200326 22:29:19.203" level="INFO">Typing text '15724645025' into text field '//input[@id='number']'.</msg>
-<status status="PASS" starttime="20200326 22:29:19.202" endtime="20200326 22:29:19.565"></status>
+<msg timestamp="20200330 23:47:36.366" level="INFO">Typing text '21730380206' into text field '//input[@id='number']'.</msg>
+<status status="PASS" starttime="20200330 23:47:36.366" endtime="20200330 23:47:36.544"></status>
 </kw>
 <kw name="Click Button" library="Selenium2Library">
 <doc>Clicks button identified by ``locator``.</doc>
 <arguments>
 <arg>//div[@id='vue-multi-form']//div[3]//input[1]</arg>
 </arguments>
-<msg timestamp="20200326 22:29:19.568" level="INFO">Clicking button '//div[@id='vue-multi-form']//div[3]//input[1]'.</msg>
-<status status="PASS" starttime="20200326 22:29:19.567" endtime="20200326 22:29:19.926"></status>
+<msg timestamp="20200330 23:47:36.545" level="INFO">Clicking button '//div[@id='vue-multi-form']//div[3]//input[1]'.</msg>
+<status status="PASS" starttime="20200330 23:47:36.544" endtime="20200330 23:47:36.656"></status>
 </kw>
 <kw name="Wait Until Element Is Visible" library="Selenium2Library">
 <doc>Waits until element ``locator`` is visible.</doc>
 <arguments>
-<arg>//a[contains(text(),'Click here to see details')]</arg>
+<arg>//tr[@name='trackShiptable1rowInner0']</arg>
 <arg>timeout=30s</arg>
 </arguments>
-<status status="PASS" starttime="20200326 22:29:19.929" endtime="20200326 22:29:31.831"></status>
-</kw>
-<kw name="Click Element" library="Selenium2Library">
-<doc>Click element identified by ``locator``.</doc>
-<arguments>
-<arg>//a[contains(text(),'Click here to see details')]</arg>
-</arguments>
-<msg timestamp="20200326 22:29:31.832" level="INFO">Clicking element '//a[contains(text(),'Click here to see details')]'.</msg>
-<status status="PASS" starttime="20200326 22:29:31.832" endtime="20200326 22:29:31.949"></status>
-</kw>
-<kw name="Wait Until Element Is Visible" library="Selenium2Library">
-<doc>Waits until element ``locator`` is visible.</doc>
-<arguments>
-<arg>//div[@class='table-responsive-2 tsp10']//tr[1]//td[1]</arg>
-<arg>timeout=30s</arg>
-</arguments>
-<status status="PASS" starttime="20200326 22:29:31.950" endtime="20200326 22:29:32.311"></status>
+<status status="PASS" starttime="20200330 23:47:36.657" endtime="20200330 23:47:46.956"></status>
 </kw>
 <kw name="Get Text" library="Selenium2Library">
 <doc>Returns the text value of element identified by ``locator``.</doc>
 <arguments>
-<arg>xpath=//div[@class='table-responsive-2 tsp10']//tr[1]//td[1]</arg>
+<arg>xpath=//tr[@name='trackShiptable1rowInner0']//tr[1]//td[3]</arg>
 </arguments>
 <assign>
 <var>${status}</var>
 </assign>
-<msg timestamp="20200326 22:29:32.380" level="INFO">${status} = DLV</msg>
-<status status="PASS" starttime="20200326 22:29:32.312" endtime="20200326 22:29:32.380"></status>
+<msg timestamp="20200330 23:47:46.991" level="INFO">${status} =  Delivered</msg>
+<status status="PASS" starttime="20200330 23:47:46.957" endtime="20200330 23:47:46.992"></status>
+</kw>
+<kw name="Get Current Remarks">
+<assign>
+<var>${current_remarks}</var>
+</assign>
+<kw name="${COUNTER} IN RANGE [ 1 | 7 ]" type="for">
+<kw name="${COUNTER} = 1" type="foritem">
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath=//tr[@name='trackShiptable1rowInner0']//tr[1]//td[${COUNTER}]</arg>
+</arguments>
+<assign>
+<var>${catenate}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.029" level="INFO">${catenate} =  BKK</msg>
+<status status="PASS" starttime="20200330 23:47:46.993" endtime="20200330 23:47:47.029"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>${tmp_status}</arg>
+<arg>${catenate}</arg>
+</arguments>
+<assign>
+<var>${tmp_status}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.029" level="INFO">${tmp_status} =   BKK</msg>
+<status status="PASS" starttime="20200330 23:47:47.029" endtime="20200330 23:47:47.029"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>${tmp_status}</arg>
+<arg>\t</arg>
+</arguments>
+<assign>
+<var>${tmp_status}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.030" level="INFO">${tmp_status} =   BKK 	</msg>
+<status status="PASS" starttime="20200330 23:47:47.030" endtime="20200330 23:47:47.030"></status>
+</kw>
+<status status="PASS" starttime="20200330 23:47:46.993" endtime="20200330 23:47:47.030"></status>
+</kw>
+<kw name="${COUNTER} = 2" type="foritem">
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath=//tr[@name='trackShiptable1rowInner0']//tr[1]//td[${COUNTER}]</arg>
+</arguments>
+<assign>
+<var>${catenate}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.066" level="INFO">${catenate} =  03 MAR 2020 19:14</msg>
+<status status="PASS" starttime="20200330 23:47:47.030" endtime="20200330 23:47:47.066"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>${tmp_status}</arg>
+<arg>${catenate}</arg>
+</arguments>
+<assign>
+<var>${tmp_status}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.067" level="INFO">${tmp_status} =   BKK 	  03 MAR 2020 19:14</msg>
+<status status="PASS" starttime="20200330 23:47:47.066" endtime="20200330 23:47:47.067"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>${tmp_status}</arg>
+<arg>\t</arg>
+</arguments>
+<assign>
+<var>${tmp_status}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.067" level="INFO">${tmp_status} =   BKK 	  03 MAR 2020 19:14 	</msg>
+<status status="PASS" starttime="20200330 23:47:47.067" endtime="20200330 23:47:47.067"></status>
+</kw>
+<status status="PASS" starttime="20200330 23:47:47.030" endtime="20200330 23:47:47.068"></status>
+</kw>
+<kw name="${COUNTER} = 3" type="foritem">
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath=//tr[@name='trackShiptable1rowInner0']//tr[1]//td[${COUNTER}]</arg>
+</arguments>
+<assign>
+<var>${catenate}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.090" level="INFO">${catenate} =  Delivered</msg>
+<status status="PASS" starttime="20200330 23:47:47.068" endtime="20200330 23:47:47.091"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>${tmp_status}</arg>
+<arg>${catenate}</arg>
+</arguments>
+<assign>
+<var>${tmp_status}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.091" level="INFO">${tmp_status} =   BKK 	  03 MAR 2020 19:14 	  Delivered</msg>
+<status status="PASS" starttime="20200330 23:47:47.091" endtime="20200330 23:47:47.091"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>${tmp_status}</arg>
+<arg>\t</arg>
+</arguments>
+<assign>
+<var>${tmp_status}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.092" level="INFO">${tmp_status} =   BKK 	  03 MAR 2020 19:14 	  Delivered 	</msg>
+<status status="PASS" starttime="20200330 23:47:47.091" endtime="20200330 23:47:47.092"></status>
+</kw>
+<status status="PASS" starttime="20200330 23:47:47.068" endtime="20200330 23:47:47.092"></status>
+</kw>
+<kw name="${COUNTER} = 4" type="foritem">
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath=//tr[@name='trackShiptable1rowInner0']//tr[1]//td[${COUNTER}]</arg>
+</arguments>
+<assign>
+<var>${catenate}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.126" level="INFO">${catenate} =  -</msg>
+<status status="PASS" starttime="20200330 23:47:47.092" endtime="20200330 23:47:47.126"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>${tmp_status}</arg>
+<arg>${catenate}</arg>
+</arguments>
+<assign>
+<var>${tmp_status}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.127" level="INFO">${tmp_status} =   BKK 	  03 MAR 2020 19:14 	  Delivered 	  -</msg>
+<status status="PASS" starttime="20200330 23:47:47.127" endtime="20200330 23:47:47.127"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>${tmp_status}</arg>
+<arg>\t</arg>
+</arguments>
+<assign>
+<var>${tmp_status}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.128" level="INFO">${tmp_status} =   BKK 	  03 MAR 2020 19:14 	  Delivered 	  - 	</msg>
+<status status="PASS" starttime="20200330 23:47:47.127" endtime="20200330 23:47:47.128"></status>
+</kw>
+<status status="PASS" starttime="20200330 23:47:47.092" endtime="20200330 23:47:47.128"></status>
+</kw>
+<kw name="${COUNTER} = 5" type="foritem">
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath=//tr[@name='trackShiptable1rowInner0']//tr[1]//td[${COUNTER}]</arg>
+</arguments>
+<assign>
+<var>${catenate}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.161" level="INFO">${catenate} =  48</msg>
+<status status="PASS" starttime="20200330 23:47:47.128" endtime="20200330 23:47:47.162"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>${tmp_status}</arg>
+<arg>${catenate}</arg>
+</arguments>
+<assign>
+<var>${tmp_status}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.162" level="INFO">${tmp_status} =   BKK 	  03 MAR 2020 19:14 	  Delivered 	  - 	  48</msg>
+<status status="PASS" starttime="20200330 23:47:47.162" endtime="20200330 23:47:47.162"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>${tmp_status}</arg>
+<arg>\t</arg>
+</arguments>
+<assign>
+<var>${tmp_status}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.163" level="INFO">${tmp_status} =   BKK 	  03 MAR 2020 19:14 	  Delivered 	  - 	  48 	</msg>
+<status status="PASS" starttime="20200330 23:47:47.162" endtime="20200330 23:47:47.163"></status>
+</kw>
+<status status="PASS" starttime="20200330 23:47:47.128" endtime="20200330 23:47:47.163"></status>
+</kw>
+<kw name="${COUNTER} = 6" type="foritem">
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath=//tr[@name='trackShiptable1rowInner0']//tr[1]//td[${COUNTER}]</arg>
+</arguments>
+<assign>
+<var>${catenate}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.205" level="INFO">${catenate} =  684.0 K</msg>
+<status status="PASS" starttime="20200330 23:47:47.163" endtime="20200330 23:47:47.205"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>${tmp_status}</arg>
+<arg>${catenate}</arg>
+</arguments>
+<assign>
+<var>${tmp_status}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.206" level="INFO">${tmp_status} =   BKK 	  03 MAR 2020 19:14 	  Delivered 	  - 	  48 	  684.0 K</msg>
+<status status="PASS" starttime="20200330 23:47:47.205" endtime="20200330 23:47:47.206"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>${tmp_status}</arg>
+<arg>\t</arg>
+</arguments>
+<assign>
+<var>${tmp_status}</var>
+</assign>
+<msg timestamp="20200330 23:47:47.207" level="INFO">${tmp_status} =   BKK 	  03 MAR 2020 19:14 	  Delivered 	  - 	  48 	  684.0 K 	</msg>
+<status status="PASS" starttime="20200330 23:47:47.206" endtime="20200330 23:47:47.207"></status>
+</kw>
+<status status="PASS" starttime="20200330 23:47:47.163" endtime="20200330 23:47:47.207"></status>
+</kw>
+<status status="PASS" starttime="20200330 23:47:46.993" endtime="20200330 23:47:47.207"></status>
+</kw>
+<msg timestamp="20200330 23:47:47.207" level="INFO">${current_remarks} =   BKK 	  03 MAR 2020 19:14 	  Delivered 	  - 	  48 	  684.0 K 	</msg>
+<status status="PASS" starttime="20200330 23:47:46.992" endtime="20200330 23:47:47.207"></status>
 </kw>
 <kw name="Get Text" library="Selenium2Library">
 <doc>Returns the text value of element identified by ``locator``.</doc>
 <arguments>
-<arg>xpath=//div[@class='table-responsive-2 tsp10']//tr[1]//td[4]</arg>
+<arg>xpath=//tr[@name='trackShiptable1rowInner0']</arg>
 </arguments>
-<assign>
-<var>${current_remarks}</var>
-</assign>
-<msg timestamp="20200326 22:29:32.418" level="INFO">${current_remarks} = Delivered 35 Pcs 521 Kgs 20-Mar-2020 18:33 at LHR</msg>
-<status status="PASS" starttime="20200326 22:29:32.381" endtime="20200326 22:29:32.418"></status>
-</kw>
-<kw name="Get Location" library="Selenium2Library">
-<doc>Returns the current browser URL.</doc>
 <assign>
 <var>${status_string}</var>
 </assign>
-<msg timestamp="20200326 22:29:32.426" level="INFO">${status_string} = http://www.qrcargo.com/trackshipment?docNumber=24645025&amp;docType=MAWB&amp;docPrefix=157</msg>
-<status status="PASS" starttime="20200326 22:29:32.419" endtime="20200326 22:29:32.426"></status>
+<msg timestamp="20200330 23:47:47.330" level="INFO">${status_string} =   Station Status Date Status Flight Details Pieces Weight
+ BKK  03 MAR 2020 19:14  Delivered  -  48  684.0 K
+ BKK  02 MAR 2020 09:26  Documents Delivered  -  48  684.0 K
+ BKK  01 MAR 2020 09:11  Notif...</msg>
+<status status="PASS" starttime="20200330 23:47:47.208" endtime="20200330 23:47:47.330"></status>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <doc>Logs the given message to the console.</doc>
 <arguments>
 <arg>${status}</arg>
 </arguments>
-<status status="PASS" starttime="20200326 22:29:32.427" endtime="20200326 22:29:32.427"></status>
+<status status="PASS" starttime="20200330 23:47:47.331" endtime="20200330 23:47:47.332"></status>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <doc>Logs the given message to the console.</doc>
 <arguments>
 <arg>${current_remarks}</arg>
 </arguments>
-<status status="PASS" starttime="20200326 22:29:32.428" endtime="20200326 22:29:32.428"></status>
+<status status="PASS" starttime="20200330 23:47:47.333" endtime="20200330 23:47:47.333"></status>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <doc>Logs the given message to the console.</doc>
 <arguments>
 <arg>${status_string}</arg>
 </arguments>
-<status status="PASS" starttime="20200326 22:29:32.429" endtime="20200326 22:29:32.429"></status>
+<status status="PASS" starttime="20200330 23:47:47.334" endtime="20200330 23:47:47.335"></status>
 </kw>
 <kw name="Close Browser" library="Selenium2Library">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20200326 22:29:32.430" endtime="20200326 22:29:35.958"></status>
+<status status="PASS" starttime="20200330 23:47:47.335" endtime="20200330 23:47:49.807"></status>
 </kw>
 <tags>
 <tag>DEBUG</tag>
 </tags>
-<status status="PASS" starttime="20200326 22:29:04.392" endtime="20200326 22:29:35.959" critical="yes"></status>
+<status status="PASS" starttime="20200330 23:47:26.598" endtime="20200330 23:47:49.809" critical="yes"></status>
 </test>
 <doc>Suite description</doc>
-<status status="PASS" starttime="20200326 22:29:01.670" endtime="20200326 22:29:35.962"></status>
+<status status="PASS" starttime="20200330 23:47:26.079" endtime="20200330 23:47:49.816"></status>
 </suite>
 <statistics>
 <total>
@@ -144,21 +426,9 @@
 <stat pass="1" fail="0">DEBUG</stat>
 </tag>
 <suite>
-<stat pass="1" fail="0" id="s1" name="157">157</stat>
+<stat pass="1" fail="0" id="s1" name="217">217</stat>
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20200326 22:29:04.384" level="ERROR">Error in file 'C:\Users\qpjg1605\Documents\FL\ShipmentTracker\157.robot': Initializing test library 'MYSQlWrapper' with no arguments failed: DatabaseError: 2003 (HY000): Can't connect to MySQL server on 'localhost' (10061)
-Traceback (most recent call last):
-  File "C:\Users\qpjg1605\Documents\FL\ShipmentTracker\MYSQlWrapper.py", line 14, in __init__
-    password=db_details["psswd"])
-  File "c:\users\qpjg1605\appdata\local\programs\python\python36\lib\site-packages\mysql\connector\__init__.py", line 172, in connect
-    return CMySQLConnection(*args, **kwargs)
-  File "c:\users\qpjg1605\appdata\local\programs\python\python36\lib\site-packages\mysql\connector\connection_cext.py", line 78, in __init__
-    self.connect(**kwargs)
-  File "c:\users\qpjg1605\appdata\local\programs\python\python36\lib\site-packages\mysql\connector\abstracts.py", line 735, in connect
-    self._open_connection()
-  File "c:\users\qpjg1605\appdata\local\programs\python\python36\lib\site-packages\mysql\connector\connection_cext.py", line 182, in _open_connection
-    sqlstate=exc.sqlstate)</msg>
 </errors>
 </robot>

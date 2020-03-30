@@ -12,16 +12,15 @@ ${tmp_status}
 *** Keywords ***
 Get String
     [Arguments]  ${INDEX}
-    : FOR    ${COUNTER}    IN RANGE    1    9
-    \  ${catenate} =   Run Keyword If   ${INDEX} == 7    Get Text    xpath=//table[${INDEX}]//tbody[1]//tr[4]//td[${COUNTER}]   ELSE     Get Text    xpath=//table[${INDEX}]//tbody[1]//tr[1]//td[${COUNTER}]
+    : FOR    ${COUNTER}    IN RANGE    1    7
+    \  ${catenate} =   Get Text    xpath=//tr[@id='trackShiptable1rowInner0']//tr[${INDEX}]//td[${COUNTER}]
     \  ${tmp_status} =  Catenate   ${tmp_status}    ${catenate}
     \  ${tmp_status} =   Catenate   ${tmp_status}    \t
     [Return]  ${tmp_status}
 
 Get Current Remarks
-    [Arguments]  ${COUNTS}
-    : FOR    ${COUNTER}    IN RANGE    1    9
-    \  ${catenate} =   Run Keyword If   ${COUNTS} == 7    Get Text    xpath=//table[${COUNTS}]//tbody[1]//tr[4]//td[${COUNTER}]   ELSE     Get Text    xpath=//table[${COUNTS}]//tbody[1]//tr[1]//td[${COUNTER}]
+    : FOR    ${COUNTER}    IN RANGE    1    7
+    \  ${catenate} =   Get Text    xpath=//tr[@id='trackShiptable1rowInner0']//tr[1]//td[${COUNTER}]
     \  ${tmp_status} =  Catenate   ${tmp_status}    ${catenate}
     \  ${tmp_status} =   Catenate   ${tmp_status}    \t
     [Return]  ${tmp_status}
@@ -39,25 +38,19 @@ Test title
     GO to    https://www.track-trace.com/aircargo    #headlesschrome      ##PROD
     Maximize Browser Window
     Sleep    4s
-    ${tracking_id}=	 Replace String Using Regexp	${shipment_id}	618	  ${EMPTY}	  count=1
     Click Button    //button[@class='tingle-btn tingle-btn--primary']
     Input Text    //input[@id='number']    ${shipment_id}
-    Click Button    //div[2]//input[1]
-    Click Element   //p[contains(text(),'Tracking results from Singapore Airlines(SQ) can n')]
-    Select Window   Track Shipment
-    Input Text    //input[@id='Suffix1']    ${tracking_id}
-    Click Button    //input[@id='btnQuery']
-    Sleep    2s
-    ${count}=  Get Element Count    //table
-    ${count}=    Convert To Integer    ${count}
-    ${counts}=      Evaluate    ${count} - 1
-    ${status}=   Run Keyword If   ${counts} == 7    Get Text    xpath=//table[7]//tbody[1]//tr[4]//td[3]   ELSE     Get Text    xpath=//table[${counts}]//tbody[1]//tr[1]//td[3]
-    : FOR    ${INDEX}    IN RANGE    7  ${count}  2
+    Click Button    //div[@id='vue-multi-form']//div[3]//input[1]
+    Wait Until Element Is Visible  //tr[@id='trackShiptable1rowInner0']//tr[1]//td[3]  timeout=30s
+    ${rows}=  Get Element Count    //tr[@id='trackShiptable1rowInner0']//tr
+    ${ROWS}=    Convert To Integer    ${rows}
+    ${status}=   Get Text    xpath=//tr[@id='trackShiptable1rowInner0']//tr[1]//td[3]
+    : FOR    ${INDEX}    IN RANGE    1  ${ROWS}
     \  ${catenate} =  Get String  ${INDEX}
     \  ${status_string} =   Catenate   ${status_string}    ${catenate}
     \  ${status_string} =   Catenate   ${status_string}    \n
     \  ${catenate} =   Set variable   ${EMPTY}
-    ${current_remarks}=  Get Current Remarks  ${counts}
+    ${current_remarks}=  Get Current Remarks
     send to DB  ${shipment_id}  ${status}  ${current_remarks}  ${status_string}
     log to console   ${status}
     log to console   ${current_remarks}
