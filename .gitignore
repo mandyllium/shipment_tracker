@@ -4,3 +4,4 @@ venv
 output.xml
 *.png
 __pycache__
+*.log
