@@ -36,8 +36,9 @@ Test title
     Click Button    //button[@class='tingle-btn tingle-btn--primary']
     Input Text    //input[@id='number']    ${shipment_id}
     Click Button    //div[@id='vue-multi-form']//div[3]//input[1]
-    Wait Until Element Is Visible  //span[@id='lblLatestActivity']  timeout=30s
-    ${status}=   Get Text    xpath=//span[@id='lblLatestActivity']
+    Wait Until Element Is Visible  //div[@id='content']  timeout=30s
+    ${list_count}=  Get Element Count    //div[@id='content']//li
+    ${status}=   Get Text    xpath=//div[@id='content']//li[${list_count}]//span[1]
     ${ROWS}=  Get Element Count     //table[@id='statusHistoryTable']//tr
     ${ROWS}=    Evaluate    ${ROWS} - 1
     : FOR    ${INDEX}    IN RANGE    1  ${ROWS}

@@ -26,7 +26,7 @@ Test title
     ${status}=   Get Text    xpath=//div[@class='timelinecontainer']//div[1]//div[2]//div[1]//h3[1]
     ${current_remarks}=  Get Text    xpath=//body[1]/div[1]/div[4]/div[1]/div[1]/div[2]/div[2]
     ${status_string}=    Get Location
-    send to DB  ${shipment_id}  ${status}  ${current_remarks}  ${status_string}
+    #send to DB  ${shipment_id}  ${status}  ${current_remarks}  ${status_string}
     log to console   ${status}
     log to console   ${current_remarks}
     log to console   ${status_string}
