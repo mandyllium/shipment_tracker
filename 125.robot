@@ -15,6 +15,7 @@ Test title
     Call Method    ${chrome_options}    add_argument    --disable-gpu
     Call Method    ${chrome_options}    add_argument    --no-sandbox
     Call Method    ${chrome_options}    add_argument    --ignore-certificate-errors
+    Call Method    ${chrome_options}    add_argument    --disable-dev-shm-using
     Create Webdriver    Chrome    chrome_options=${chrome_options}
     Go To    https://www.track-trace.com/aircargo   #chrome      ##PROD
     Maximize Browser Window
