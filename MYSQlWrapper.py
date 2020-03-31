@@ -3,6 +3,7 @@ from mysql.connector import Error
 from db_details import db_details
 from call_robot import call_rpa
 from filename_list import filename_list
+import time
 
 
 
@@ -28,6 +29,7 @@ class MYSQlWrapper:
             if id[0][:3] in filename_list and len(id[0]) == 11:
                 robot_filename = id[0][:3]+'.robot'
                 call_rpa(id, robot_filename)
+                time.sleep(10)
             else:
                 continue
         print("All ids in track_ids table checked.") #\n Rerun after 10 mins")
