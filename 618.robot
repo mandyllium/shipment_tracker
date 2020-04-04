@@ -48,7 +48,8 @@ Test title
     Select Window   Track Shipment
     Input Text    //input[@id='Suffix1']    ${tracking_id}
     Click Button    //input[@id='btnQuery']
-    Wait Until Element Is Visible  //table  timeout=60s
+    Sleep    5s
+    #Wait Until Element Is Visible  //table  timeout=60s
     ${count}=  Get Element Count    //table
     ${count}=    Convert To Integer    ${count}
     ${counts}=      Evaluate    ${count} - 1
@@ -63,4 +64,7 @@ Test title
     log to console   ${status}
     log to console   ${current_remarks}
     log to console   ${status_string}
+     #Close Browser
+
+TC 02
     Close Browser

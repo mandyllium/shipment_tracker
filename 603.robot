@@ -52,4 +52,7 @@ Test title
     log to console   ${words[0]}
     log to console   ${current_remarks}
     log to console   ${status_string}
+    #Close Browser
+
+TC 02
     Close Browser
