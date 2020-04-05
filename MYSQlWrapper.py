@@ -22,7 +22,7 @@ class MYSQlWrapper:
 
     def shipment_id(self):
         self.db_connect()
-        get_shipment_id_query="select * from track_ids order by shipment_id ASC"
+        get_shipment_id_query="select * from track_ids order by shipment_id DESC"
         self.cursor.execute(get_shipment_id_query)
         track_ids = self.cursor.fetchall()
         for id in track_ids:
