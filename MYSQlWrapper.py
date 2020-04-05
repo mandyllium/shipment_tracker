@@ -68,7 +68,7 @@ class MYSQlWrapper:
                      where shipment_id like '{3}' '''. format(current_status, current_remarks, status_string, shipment_id)
 
         status = current_status.lower()
-        if 'delivered' in status or 'dlv' in status and 'documents delivered' not in status:
+        if 'delivered' in status or 'dlv' in status or 'nfd' in status and 'documents delivered' not in status:
             self.delete_entry(shipment_id)
             if self.check_entry(shipment_id):
                 self.cursor.execute(update_query)
