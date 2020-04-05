@@ -15,7 +15,7 @@ Get String
     ${string}=    Get Text    xpath=//table//tbody//tr[${ROWS}]//th
     : FOR    ${COUNTER}    IN RANGE    2    7
     \  ${catenate} =   Run Keyword If   """${string}""" == """Arrived""" or """${string}""" == """Arrival Scheduled""" and ${COUNTER} == 3 or ${COUNTER} == 4 and ${COUNTER} != 2
-    \                  ...  Sleep    1s
+    \                  ...  Continue For Loop
     \                  ...  ELSE IF  """${string}""" != """Arrived""" and """${string}""" != """Arrival Scheduled"""
     \                  ...  Get Text    xpath=//table//tbody//tr[${ROWS}]//td[${COUNTER}]
     \                  ...  ELSE IF  """${string}""" == """Arrived""" or """${string}""" == """Arrival Scheduled""" and ${COUNTER} == 5
@@ -34,7 +34,7 @@ Get Current Remarks
     ${string}=    Get Text    xpath=//table//tbody//tr[${ROWS}]//th
     : FOR    ${COUNTER}    IN RANGE    2    7
     \  ${catenate} =   Run Keyword If   """${string}""" == """Arrived""" or """${string}""" == """Arrival Scheduled""" and ${COUNTER} == 3 or ${COUNTER} == 4 and ${COUNTER} != 2
-    \                  ...  Sleep    1s
+    \                  ...  Continue For Loop
     \                  ...  ELSE IF  """${string}""" != """Arrived""" and """${string}""" != """Arrival Scheduled"""
     \                  ...  Get Text    xpath=//table//tbody//tr[${ROWS}]//td[${COUNTER}]
     \                  ...  ELSE IF  """${string}""" == """Arrived""" or """${string}""" == """Arrival Scheduled""" and ${COUNTER} == 5

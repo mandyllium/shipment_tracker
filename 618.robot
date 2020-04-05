@@ -12,16 +12,19 @@ ${tmp_status}
 *** Keywords ***
 Get String
     [Arguments]  ${INDEX}
+    ${columns} =  Get Element Count    //table[${INDEX}]//tr//td
     : FOR    ${COUNTER}    IN RANGE    1    9
-    \  ${catenate} =   Run Keyword If   ${INDEX} == 7    Get Text    xpath=//table[${INDEX}]//tbody[1]//tr[4]//td[${COUNTER}]   ELSE     Get Text    xpath=//table[${INDEX}]//tbody[1]//tr[1]//td[${COUNTER}]
+    \  ${catenate} =   Run Keyword If   ${columns} == 18    Get Text    xpath=//table[${INDEX}]//tbody[1]//tr[4]//td[${COUNTER}]
+    \                  ...  ELSE IF    ${columns} == 8     Get Text    xpath=//table[${INDEX}]//tbody[1]//tr[1]//td[${COUNTER}]
     \  ${tmp_status} =  Catenate   ${tmp_status}    ${catenate}
     \  ${tmp_status} =   Catenate   ${tmp_status}    \t
     [Return]  ${tmp_status}
 
 Get Current Remarks
     [Arguments]  ${COUNTS}
+    ${columns} =  Get Element Count    //table[${COUNTS}]//tr//td
     : FOR    ${COUNTER}    IN RANGE    1    9
-    \  ${catenate} =   Run Keyword If   ${COUNTS} == 7    Get Text    xpath=//table[${COUNTS}]//tbody[1]//tr[4]//td[${COUNTER}]   ELSE     Get Text    xpath=//table[${COUNTS}]//tbody[1]//tr[1]//td[${COUNTER}]
+    \  ${catenate} =   Run Keyword If   ${columns} == 18    Get Text    xpath=//table[${COUNTS}]//tbody[1]//tr[4]//td[${COUNTER}]   ELSE     Get Text    xpath=//table[${COUNTS}]//tbody[1]//tr[1]//td[${COUNTER}]
     \  ${tmp_status} =  Catenate   ${tmp_status}    ${catenate}
     \  ${tmp_status} =   Catenate   ${tmp_status}    \t
     [Return]  ${tmp_status}
@@ -53,9 +56,11 @@ Test title
     ${count}=  Get Element Count    //table
     ${count}=    Convert To Integer    ${count}
     ${counts}=      Evaluate    ${count} - 1
-    ${status}=   Run Keyword If   ${counts} == 7    Get Text    xpath=//table[7]//tbody[1]//tr[4]//td[3]   ELSE     Get Text    xpath=//table[${counts}]//tbody[1]//tr[1]//td[3]
-    : FOR    ${INDEX}    IN RANGE    7  ${count}  2
-    \  ${catenate} =  Get String  ${INDEX}
+    ${columns} =  Get Element Count    //table[${counts}]//tr//td
+    ${status}=   Run Keyword If   ${columns} == 18    Get Text    xpath=//table[${counts}]//tbody[1]//tr[4]//td[3]   ELSE     Get Text    xpath=//table[${counts}]//tbody[1]//tr[1]//td[3]
+    : FOR    ${INDEX}    IN RANGE    1  ${count}
+    \  ${columns} =  Get Element Count    //table[${INDEX}]//tr//td
+    \  ${catenate} =  Run Keyword If   ${columns} == 18 or ${columns} == 8  Get String  ${INDEX}   ELSE   Continue For Loop
     \  ${status_string} =   Catenate   ${status_string}    ${catenate}
     \  ${status_string} =   Catenate   ${status_string}    \n
     \  ${catenate} =   Set variable   ${EMPTY}
