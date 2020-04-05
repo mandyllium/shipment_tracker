@@ -10,7 +10,7 @@ ${tmp_status}
 *** Keywords ***
 Get Current Remarks
     : FOR    ${COUNTER}    IN RANGE    1    9
-    \  ${catenate} =   Get Text    xpath=//div[6]//table[1]//tbody[1]//tr[3]//td[3]
+    \  ${catenate} =   Get Text    xpath=//div[6]//table[1]//tbody[1]//tr[3]//td[${COUNTER}]
     \  ${tmp_status} =  Catenate   ${tmp_status}    ${catenate}
     \  ${tmp_status} =   Catenate   ${tmp_status}    \t
     [Return]  ${tmp_status}
@@ -33,7 +33,7 @@ Test title
     Input Text    //input[@id='number']    ${shipment_id}
     Click Button    //div[@id='vue-multi-form']//div[3]//input[1]
     Wait Until Element Is Visible  //div[6]//table[1]//tbody[1]//tr[3]//td[3]  timeout=30s
-    ${status}=   Get Text    xpath=//div[6]//table[1]//tbody[1]//tr[3]//td[3]
+    ${status}=   Get Text    xpath=//div[6]//table[1]//tbody[1]//tr[3]//td[1]
     ${current_remarks}=  Get Current Remarks
     ${status_string}=    Get Location
     send to DB  ${shipment_id}  ${status}  ${current_remarks}  ${status_string}
