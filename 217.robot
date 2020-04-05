@@ -36,7 +36,7 @@ Test title
     ${status}=   Get Text    xpath=//tr[@name='trackShiptable1rowInner0']//tr[1]//td[3]
     ${current_remarks}=  Get Current Remarks
     ${status_string}=    Get Text    xpath=//tr[@name='trackShiptable1rowInner0']
-    #send to DB  ${shipment_id}  ${status}  ${current_remarks}  ${status_string}
+    send to DB  ${shipment_id}  ${status}  ${current_remarks}  ${status_string}
     log to console   ${status}
     log to console   ${current_remarks}
     log to console   ${status_string}
