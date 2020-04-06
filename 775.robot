@@ -39,7 +39,7 @@ Test title
     ${Result}=  Page Should Contain Element  //div[@id='contentarea_tracking']//div[4]
     ${status_history}=  Run Keyword Unless  '${Result}'=='PASS'  Get Text    xpath=//div[@id='contentarea_tracking']//div[4]
     ${status_string}=   Catenate   ${booking_history}    \n    ${status_history}
-    #send to DB  ${shipment_id}  ${status}  ${current_remarks}  ${status_string}
+    send to DB  ${shipment_id}  ${status}  ${current_remarks}  ${status_string}
     log to console   ${status}
     log to console   ${current_remarks}
     log to console   ${status_string}
