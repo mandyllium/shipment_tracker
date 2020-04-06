@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation    Suite description
 Library     Selenium2Library
+Library     String
 Library     MYSQlWrapper.py
 
 *** Variables ***
@@ -17,18 +18,28 @@ Test title
     Call Method    ${chrome_options}    add_argument    --ignore-certificate-errors
     Call Method    ${chrome_options}    add_argument    --disable-dev-shm-using
     Create Webdriver    Chrome    chrome_options=${chrome_options}
-    Go to    https://www.track-trace.com/aircargo   #chrome      ##PROD
+    ${tracking_id}=	 Replace String Using Regexp	${shipment_id}	-	  ${EMPTY}	  count=1
+    ${tracking_id}=	 Replace String Using Regexp	${shipment_id}	403	  ${EMPTY}	  count=1
+    Go to    https://jumpseat.atlasair.com/aa/tracktracehtml/TrackTrace.html?pe=403&se=${tracking_id}  #chrome      ##PROD
     Maximize Browser Window
-    Sleep    4s
-    Click Button    //button[@class='tingle-btn tingle-btn--primary']
-    Input Text    //input[@id='number']    ${shipment_id}
-    Click Button    //div[@id='vue-multi-form']//div[3]//input[1]
-    Wait Until Element Is Visible  //div[contains(@class,'even-row')]//div[contains(@class,'cont-col2')]  timeout=30s
-    ${status}=   Get Text    xpath=//div[contains(@class,'even-row')]//div[contains(@class,'cont-col2')]
-    ${current_remarks}=  Get Text  xpath=//div[contains(@class,'even-row')]//div[contains(@class,'cont-col2')]
+    Sleep    7s
+    Wait Until Element Is Visible   //td[3][@class="statusinfo"]  timeout=60s
+    ${columns} =  Get Element Count    //td[3][@class="statusinfo"]
+    ${column}=      Evaluate    ${columns} + 1
+    ${Result}=  Page Should Contain Element  //tr[${columns}]//td[3][@class="statusinfo"]
+    log to console  ${Result}
+    ${status}=  Run Keyword Unless  '${Result}'=='PASS'  Get Text    xpath=//tr[${columns}]//td[3][@class="statusinfo"]
+    ${status}=  Run Keyword Unless  '${Result}'=='FAIL'  Get Text    xpath=//tr[${column}]//td[3][@class="statusinfo"]
+    ${Result}=  Page Should Contain Element  //tr[${columns}]//td[3][@class="statusinfo"]
+    log to console  ${Result}
+    ${current_remarks}=  Run Keyword Unless  '${Result}'=='PASS'  Get Text    xpath=//tr[${columns}]
+    ${current_remarks}=  Run Keyword Unless  '${Result}'=='FAIL'  Get Text    xpath=//tr[${column}]
     ${status_string}=    Get Location
     send to DB  ${shipment_id}  ${status}  ${current_remarks}  ${status_string}
     log to console   ${status}
     log to console   ${current_remarks}
     log to console   ${status_string}
+    #Close Browser
+
+TC 02
     Close Browser
